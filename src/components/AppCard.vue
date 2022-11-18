@@ -14,15 +14,10 @@ import {store} from './data/store'
 
 
 <template>
-  <div class="container mb-4">
-    <button class="btn btn-outline-light">Select Category
-      <i class="bi bi-chevron-down"></i>
-    </button>
-  </div>
   <div class="container d-flex flex-wrap p-4">
     <div v-for="member in store.memberList" :key="member.char_id"
     class="card p-4 border-0 mb-4">
-    <img :src="member.img" alt="{{member.name}}">
+    <img :src="member.img" :alt="member.name">
     <h5 class="text-light text-center m-2">{{member.name}}</h5>
     <span class="text-center m-2">{{member.category}}</span>
     <span class="text-center m-2">{{member.status}}</span>

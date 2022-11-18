@@ -4,12 +4,14 @@ import {store} from './components/data/store'
 
 import AppHeader from './components/AppHeader.vue';
 import AppCard from './components/AppCard.vue';
+import AppRicerca from './components/AppRicerca.vue';
 
   export default {
     name: 'App',
     components:{
       AppHeader,
-      AppCard
+      AppCard,
+      AppRicerca
     },
     data(){
       return{
@@ -18,7 +20,12 @@ import AppCard from './components/AppCard.vue';
     },
     methods:{
       getApi(){
-        axios.get(store.apiUrl)
+        axios.get(store.apiUrl, {
+          params: {
+            name: store.memberSearch,
+            category: store.statusSearch
+          }
+        })
         .then(result =>{
           store.memberList = result.data
           console.log(store.memberList);
@@ -39,6 +46,7 @@ import AppCard from './components/AppCard.vue';
 <template>
   <AppHeader />
   <main>
+    <AppRicerca @startSearch="getApi()" />
     <AppCard />
   </main>
 </template>
